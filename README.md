@@ -1,6 +1,6 @@
 # 📚 Education Platform (ASP.NET Core MVC)
 
-An online educational platform built using ASP.NET Core MVC that allows students to access courses, view study materials, and manage their learning process بسهولة وسلاسة.
+An online educational platform built using ASP.NET Core MVC that allows students to access courses, view study materials, and manage their learning process.
 
 ---
 
