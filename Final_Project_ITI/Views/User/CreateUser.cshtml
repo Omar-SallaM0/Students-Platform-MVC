@@ -1,0 +1,68 @@
+﻿@model User
+@{
+    ViewData["Title"] = "CreateUser";
+    Layout = "_layout";
+
+}
+
+<h1>Create User</h1>
+
+<form asp-action="AddUser" asp-controller="User" method ="post" class="w-50 mx-auto mt-4">
+    @* PersonName *@
+        <div class="form-field flex">
+                <div class="flex-1">
+                    <label asp-for="Name" class="form-label"></label>
+
+                </div>
+                <div class="flex-1">
+                     <input asp-for="Name"  class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+        </div>
+        <br />
+    @* Email *@
+        <div class="form-field flex">
+                <div class="flex-1">
+                    <label asp-for="Email" class="form-label"></label>
+                </div>
+                <div class="flex-1">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+        </div>
+        <br />
+    @* Password *@
+        <div class="form-field flex">
+                <div class="flex-1">
+                    <label asp-for="Password" class="form-label"></label>
+                </div>
+                <div class="flex-1">
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+                </div>
+        </div>
+        <br />
+    @* ConfirmPassword *@
+       <div class="form-field flex">
+                <div class="flex-1">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                </div>
+                <div class="flex-1">
+                <input asp-for="ConfirmPassword" class="form-control" />
+
+                </div>
+        </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger padding-left w-30"></span>
+        <br />
+        <br />
+
+        <div class="d-flex gap-2">
+        <input type="submit" value="Add" class="btn btn-success" />
+        <a href="/Home/index" class="btn btn-secondary">Cancel</a>
+        </div>
+
+</form>
+
+<a href="~/Home/index" class ="linl-hover btn btn-dark">Back To Home</a>

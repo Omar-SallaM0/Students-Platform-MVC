@@ -1,0 +1,45 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "EditDept";
+}
+<h1>Edit Dept</h1>
+
+<div class="container w-50 ">
+    <form action="~/Department/Editv2/@Model.Id" method ="post">
+        @* id *@
+        <div class="form-field flex">
+                <div class="flex-1 w-25">
+                    <label asp-for="Id" class="form-label">ID</label>
+                </div>
+                <div class="flex-1">
+                     <input asp-for="Id" value=@Model.Id disabled class="view-disabled" class="form-control" />
+                </div>
+        </div>
+        <br/>
+
+        @* Department Name *@
+        <div class="form-field flex">
+                <div class="flex-1 w-50">
+                    <label asp-for="DeptName" class="form-label">Department Name</label>
+                </div>
+                <div class="flex-1">
+                     <input asp-for="DeptName" value=@Model.DeptName class="form-control" />
+                </div>
+        </div>
+        <br />
+
+        <div class="d-flex gap-2">
+        <input type="submit" value="Save Edit" class="btn btn-success" />
+        <a href="/Department/getalldepartment" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section scripts {
+
+                <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+                <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<a href="~/Department/getalldepartment" class ="linl-hover btn btn-dark">Back To Home</a>

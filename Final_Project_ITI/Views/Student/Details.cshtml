@@ -1,0 +1,19 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="card" style="width: 45rem;">
+    <div class="card-body">
+        <h2>Id:@Model.Id</h2>
+        <h2>@Html.DisplayNameFor(e => e.Name):@Model.Name</h2>
+        <h2>@Html.DisplayNameFor(e => e.Age):@Model.Age</h2>
+        <h2>@Html.DisplayNameFor(e => e.Address):@Model.Address</h2>
+        <h2>@Html.DisplayNameFor(e => e.Email):@Model.Email</h2>
+        <h2>Department Id:@Model.DeptId</h2>
+    </div>
+</div>
+
+<a href="~/Student/Getall" class ="linl-hover btn btn-secondary">Back To Home</a>

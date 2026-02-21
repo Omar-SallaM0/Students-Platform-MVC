@@ -1,0 +1,42 @@
+﻿@model User
+@{
+    ViewData["Title"] = "LoginUser";
+    Layout = "_Layout";
+}
+
+<h1>Login User</h1>
+
+<form asp-action="LoginUserV1" asp-controller="User" method ="post" class="w-50 mx-auto mt-4">
+    @* User Name *@
+        <div class="form-field flex">
+                <div class="flex-1">
+                    <label asp-for="Name" class="form-label"></label>
+
+                </div>
+                <div class="flex-1">
+                     <input asp-for="Name"  class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+        </div>
+        <br />
+    @* Password *@
+        <div class="form-field flex">
+                <div class="flex-1">
+                    <label asp-for="Password" class="form-label"></label>
+                </div>
+                <div class="flex-1">
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+                </div>
+        </div>
+        <br />
+        <div class="d-flex gap-2">
+        <input type="submit" value="Log" class="btn btn-success" />
+        <a href="/Home/index" class="btn btn-secondary">Cancel</a>
+        </div>
+
+</form>
+
+<a href="~/Home/index" class ="linl-hover btn btn-dark">Back To Home</a>

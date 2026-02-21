@@ -1,0 +1,106 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Edit";
+    SelectList deptOptions = new SelectList(ViewBag.DeptList, "Id", "DeptName");
+}
+
+<h1>Edit Student</h1>
+
+<div class="container w-50 ">
+    <form action="~/Student/Editv2/@Model.Id" method ="post">
+        @* id *@
+        <div class="form-field flex">
+                <div class="flex-1 w-25">
+                    <label asp-for="Id" class="form-label">ID</label>
+                </div>
+                <div class="flex-1">
+                     <input asp-for="Id" value=@Model.Id disabled class="view-disabled" class="form-control" />
+                </div>
+        </div>
+        <br/>
+
+        @* StudentName *@
+        <div class="form-field flex">
+                <div class="flex-1 w-25">
+                    <label asp-for="Name" class="form-label">Student Name</label>
+                </div>
+                <div class="flex-1">
+                     <input asp-for="Name" value=@Model.Name class="form-control" />
+                </div>
+        </div>
+        <br />
+
+        @* Age *@
+        <div class="form-field flex">
+                <div class="flex-1 w-25">
+                <label asp-for="Age" class="form-label">Age</label>
+                </div>
+                <div class="flex-1">
+                <input asp-for="Age" value=@Model.Age class="form-control" />
+                </div>
+        </div>
+        <br />
+
+        @* Address *@
+        <div class="form-field flex">
+                <div class="flex-1 w-25">
+                    <label asp-for="Address" class="form-label">Address</label>
+                </div>
+                <div class="flex-1">
+                <input asp-for="Address" value=@Model.Address class="form-control" />
+                </div>
+        </div>
+        <br />
+
+        @* Email *@
+        <div class="form-field flex">
+                <div class="flex-1 w-25">
+                    <label asp-for="Email" class="form-label"></label>
+                </div>
+                <div class="flex-1">
+                <input asp-for="Email" value=@Model.Email class="form-control" />
+                </div>
+        </div>
+        <br />
+        @* Password *@
+        <div class="form-field flex">
+                <div class="flex-1 w-25">
+                    <label asp-for="Password" class="form-label"></label>
+                </div>
+                <div class="flex-1">
+                <input asp-for="Password" value=@Model.Password class="form-control" />
+                </div>
+        </div>
+        <br />
+
+        @* Department Id *@
+        <div class="form-field flex"> 
+             <div class="flex-1 w-25">
+            <label asp-for="DeptId" class="form-label">Department ID</label>
+             </div>
+             <div class="flex-1 w-25">
+                 <select asp-items="deptOptions" asp-for="DeptId" class="form-control">
+
+                    <option value="@Model.DeptId">@Model.Department.DeptName</option>
+
+                </select>
+             </div>
+        </div>
+
+        <br />
+
+        <div class="d-flex gap-2">
+        <input type="submit" value="Save Edit" class="btn btn-success" />
+        <a href="/Student/getall" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section scripts {
+
+            <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+            <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+<a href="~/Student/getall" class ="linl-hover btn btn-dark">Back To Home</a>

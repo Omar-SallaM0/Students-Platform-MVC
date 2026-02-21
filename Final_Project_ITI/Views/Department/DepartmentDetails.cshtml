@@ -1,0 +1,15 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "DepartmentDetails";
+}
+
+<h1>Department Details</h1>
+
+<div class="card" style="width: 45rem;">
+    <div class="card-body">
+        <h2>Department Id:@Model.Id</h2>
+        <h2>Department Name:@Model.DeptName</h2>
+    </div>
+</div>
+
+<a href="~/Department/GetallDepartment" class ="linl-hover btn btn-secondary">Back To Home</a>

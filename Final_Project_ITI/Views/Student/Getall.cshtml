@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Student>
+@{
+    ViewData["Title"] = "Getall";
+}
+
+<h1>Get All Student</h1>
+<a href="~/Student/CreateStudent" class ="linl-hover btn btn-primary">Create Student</a>
+
+<br/>
+<br/>
+
+
+<table class="table table-hover mt">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(e => e.Id)</th>
+            <th>@Html.DisplayNameFor(e => e.Name)</th>
+            <th>@Html.DisplayNameFor(e => e.Age)</th>
+            <th>@Html.DisplayNameFor(e => e.Address)</th>
+            <th>@Html.DisplayNameFor(e => e.Email)</th>
+            <th>@Html.DisplayNameFor(e => e.Department.DeptName)</th>
+            <th> Details</th>
+            <th> Edit</th>
+            <th> Delete</th>
+        </tr>
+    </thead>
+    @foreach (Student item in Model)
+    {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Age</td>
+                <td>@item.Address</td>
+                <td>@item.Email</td>
+                <td>@item.Department.DeptName</td>
+                <td><a href="/Student/Details/@item.Id" class="btn btn-primary">Details</a></td>
+                    <td><a href="/Student/Edit/@item.Id" class="btn btn-warning">Edit</a></td>
+                     <td><a href="/Student/Delete/@item.Id" class="btn btn-secondary" onclick="return confirm ('are you sure delete @item.Name in Department @item.Department.DeptName')" >Delete</a></td>
+            </tr>
+    }
+</table>
+
+<br />
+
+<a href="~/Student/getall" class ="linl-hover btn btn-dark">Back To Home</a>

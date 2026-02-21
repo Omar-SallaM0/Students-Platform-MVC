@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/22.14 Assignment-StyleSheet.css"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/MVC_Lab1.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class ="container">
+        <div class ="navbar">
+            <div class="navbar-brand"><h1 style="color: #0d6efd">CRUD Demo</h1></div>
+            <ul>
+              <li >
+                  <a  asp-area="" asp-controller="Home" asp-action="index">Home</a>
+              </li>
+              <li >
+                  <a  asp-area="" asp-controller="Student" asp-action="Getall">Students</a>
+              </li>
+              <li>
+                  <a  asp-area="" asp-action="GetallDepartment" asp-controller="Department">Departments</a>
+              </li>
+           </ul>
+       </div>
+        <div class = "page-content">
+            @RenderBody()
+       </div>
+   </div>
+       <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

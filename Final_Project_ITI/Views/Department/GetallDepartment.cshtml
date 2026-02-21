@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Department>
+@{
+    ViewData["Title"] = "GetallDepartment";
+}
+<h1>Get All Department</h1>
+<a href="~/Department/CreateDepartment" class ="linl-hover btn btn-primary">Create Department</a>
+<br/>
+<br/>
+
+
+<table class="table table-hover mt">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(e => e.Id)</th>
+            <th>@Html.DisplayNameFor(e => e.DeptName)</th>
+            <th> Details</th>
+            <th> Edit</th>
+            <th> Delete</th>
+        </tr>
+    </thead>
+    @foreach (Department item in Model)
+    {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.DeptName</td>
+                        <td><a href="/Department/DepartmentDetails/@item.Id" class="btn btn-primary">Details</a></td>
+                    <td><a href="/Department/editdept/@item.Id" class="btn btn-warning">Edit</a></td>
+                    <td><a href="/Department/Delete/@item.Id" class="btn btn-secondary" onclick="return confirm ('are you sure delete @item.DeptName')" >Delete</a></td>
+            </tr>
+    }
+</table>
