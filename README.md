@@ -156,7 +156,7 @@ The database context pre-populates several records to ease manual verification:
 2. **Database Connection Setup**:
    Open [MyContext.cs](file:///c:/Users/omars/source/repos/Students_Education_Platform/Models/MyContext.cs) and verify/update the database connection string:
    ```csharp
-   optionsBuilder.UseSqlServer("Server=OMAR;database=FinalProjectITI;trusted_connection=true;trustServerCertificate=true");
+   optionsBuilder.UseSqlServer("Server=OMAR;database=StudentPlatform;trusted_connection=true;trustServerCertificate=true");
    ```
 
 3. **Apply Database Migrations**:
