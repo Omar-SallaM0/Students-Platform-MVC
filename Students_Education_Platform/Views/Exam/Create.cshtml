@@ -1,0 +1,100 @@
+@model Students_Education_Platform.Models.Exam
+@{
+    ViewData["Title"] = "Schedule Exam";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="d-flex align-items-center mb-4">
+                <a href="~/Exam/Index" class="btn btn-outline-secondary btn-sm rounded-circle p-2 me-3" style="width: 38px; height: 38px;">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div>
+                    <h2 class="fw-bold mb-0">Schedule New Exam</h2>
+                    <p class="text-muted small mb-0">Complete the form to register an exam milestone</p>
+                </div>
+            </div>
+
+            <div class="glass-card shadow p-5 border-0 rounded-4" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.4) !important;">
+                
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger d-flex align-items-center mb-4 border-0 rounded-3 text-danger shadow-sm" style="background-color: #fee2e2;">
+                        <i class="fas fa-exclamation-circle me-2 fs-5"></i>
+                        <div class="small fw-medium">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                        </div>
+                    </div>
+                }
+
+                <form asp-action="Create" method="post">
+                    
+                    <div class="mb-4">
+                        <label asp-for="Title" class="form-label fw-semibold text-secondary small">Exam Title</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="fas fa-file-alt text-muted"></i></span>
+                            <input asp-for="Title" class="form-control border-start-0 py-2.5 rounded-end-3" placeholder="e.g. Midterm Practical Exam" required />
+                        </div>
+                        <span asp-validation-for="Title" class="text-danger small mt-1 d-block"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="CourseId" class="form-label fw-semibold text-secondary small">Subject / Course</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="fas fa-book text-muted"></i></span>
+                            <select asp-for="CourseId" class="form-select border-start-0 py-2.5 rounded-end-3" required>
+                                <option value="">Select Course</option>
+                                @foreach (var course in ViewBag.CourseList as List<Course>)
+                                {
+                                    <option value="@course.Id">@course.CourseName</option>
+                                }
+                            </select>
+                        </div>
+                        <span asp-validation-for="CourseId" class="text-danger small mt-1 d-block"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="Date" class="form-label fw-semibold text-secondary small">Exam Date & Time</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0"><i class="far fa-calendar-alt text-muted"></i></span>
+                                <input asp-for="Date" type="datetime-local" class="form-control border-start-0 py-2.5 rounded-end-3" required />
+                            </div>
+                            <span asp-validation-for="Date" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="FullMark" class="form-label fw-semibold text-secondary small">Full Mark</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0"><i class="fas fa-star text-muted"></i></span>
+                                <input asp-for="FullMark" type="number" class="form-control border-start-0 py-2.5 rounded-end-3" placeholder="100" required />
+                            </div>
+                            <span asp-validation-for="FullMark" class="text-danger small mt-1 d-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-3 mt-4">
+                        <a href="~/Exam/Index" class="btn btn-light px-4 py-2.5 rounded-3 fw-bold border">Cancel</a>
+                        <button type="submit" class="btn btn-success px-5 py-2.5 rounded-3 fw-bold text-white shadow-sm hover-translate-y">
+                            Schedule Exam
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-translate-y {
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .hover-translate-y:hover {
+        transform: translateY(-2px);
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #10b981 !important;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15) !important;
+    }
+</style>

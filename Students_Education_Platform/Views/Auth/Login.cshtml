@@ -1,0 +1,112 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="auth-wrapper d-flex justify-content-center align-items-center min-vh-100 py-5">
+    <div class="glass-card shadow-lg p-5 border-0 rounded-4 w-100" style="max-width: 480px; backdrop-filter: blur(16px); background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(255, 255, 255, 0.4) !important;">
+        
+        <div class="text-center mb-4">
+            <div class="logo-box mb-3 d-inline-block p-3 rounded-circle bg-primary text-white shadow-sm" style="width: 70px; height: 70px;">
+                <i class="fas fa-user-shield fa-2x"></i>
+            </div>
+            <h2 class="fw-bold text-dark-800">Welcome Back</h2>
+            <p class="text-muted small">Access your personalized Student Platform</p>
+        </div>
+
+        <!-- Custom tabs with gorgeous active slide indicator -->
+        <div class="tabs-container bg-light p-1 rounded-3 mb-4 d-flex justify-content-between position-relative" style="border: 1px solid #e2e8f0;">
+            <button type="button" class="btn tab-btn w-50 active-tab py-2 rounded-2 fw-semibold btn-primary" id="studentTabBtn" onclick="switchTab('Student')">
+                <i class="fas fa-graduation-cap me-2"></i>Student
+            </button>
+            <button type="button" class="btn tab-btn w-50 py-2 rounded-2 fw-semibold text-secondary" id="adminTabBtn" onclick="switchTab('Admin')">
+                <i class="fas fa-user-cog me-2"></i>Admin / User
+            </button>
+        </div>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger d-flex align-items-center mb-4 border-0 rounded-3 text-danger shadow-sm" style="background-color: #fee2e2;">
+                <i class="fas fa-exclamation-circle me-2 fs-5"></i>
+                <div class="small fw-medium">@ViewBag.Error</div>
+            </div>
+        }
+
+        <form asp-action="Login" method="post" class="needs-validation">
+            <input type="hidden" name="type" id="userTypeInput" value="Student" />
+
+            <div class="mb-3 position-relative">
+                <label class="form-label fw-semibold text-secondary small" id="emailLabel">Student Email Address</label>
+                <div class="input-group input-group-merge">
+                    <span class="input-group-text bg-white border-end-0 border-slate-200"><i class="fas fa-envelope text-muted"></i></span>
+                    <input type="text" name="email" id="emailInput" class="form-control border-start-0 border-slate-200 py-2 rounded-end-3" placeholder="email@example.com" required />
+                </div>
+            </div>
+
+            <div class="mb-4 position-relative">
+                <label class="form-label fw-semibold text-secondary small">Password</label>
+                <div class="input-group input-group-merge">
+                    <span class="input-group-text bg-white border-end-0 border-slate-200"><i class="fas fa-lock text-muted"></i></span>
+                    <input type="password" name="password" class="form-control border-start-0 border-slate-200 py-2 rounded-end-3" placeholder="••••••••" required />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2.5 rounded-3 fw-bold shadow-sm transition-all hover-translate-y">
+                Sign In
+            </button>
+        </form>
+
+        <div class="text-center mt-4">
+            <span class="text-muted small">New to our platform?</span>
+            <a href="~/Auth/Register" class="text-primary small fw-semibold text-decoration-none ms-1">Create an account</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .glass-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+    }
+    .tab-btn {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none !important;
+    }
+    .hover-translate-y {
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .hover-translate-y:hover {
+        transform: translateY(-2px);
+    }
+    .input-group-text {
+        color: #94a3b8;
+    }
+    .form-control:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important;
+    }
+</style>
+
+<script>
+    function switchTab(type) {
+        document.getElementById('userTypeInput').value = type;
+        const studentBtn = document.getElementById('studentTabBtn');
+        const adminBtn = document.getElementById('adminTabBtn');
+        const emailLabel = document.getElementById('emailLabel');
+        const emailInput = document.getElementById('emailInput');
+
+        if (type === 'Student') {
+            studentBtn.className = "btn tab-btn w-50 py-2 rounded-2 fw-semibold btn-primary";
+            adminBtn.className = "btn tab-btn w-50 py-2 rounded-2 fw-semibold text-secondary";
+            emailLabel.innerText = "Student Email Address";
+            emailInput.placeholder = "student@example.com";
+        } else {
+            studentBtn.className = "btn tab-btn w-50 py-2 rounded-2 fw-semibold text-secondary";
+            adminBtn.className = "btn tab-btn w-50 py-2 rounded-2 fw-semibold btn-primary";
+            emailLabel.innerText = "Admin Email or Username";
+            emailInput.placeholder = "admin@example.com or admin_user";
+        }
+    }
+</script>

@@ -1,4 +1,4 @@
-namespace Final_Project_ITI
+namespace Students_Education_Platform
 {
     public class Program
     {
@@ -8,6 +8,12 @@ namespace Final_Project_ITI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             var app = builder.Build();
 
@@ -17,6 +23,8 @@ namespace Final_Project_ITI
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 

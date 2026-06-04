@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using Final_Project_ITI.Models;
+using Students_Education_Platform.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Final_Project_ITI.Controllers
+namespace Students_Education_Platform.Controllers
 {
     public class HomeController : Controller
     {

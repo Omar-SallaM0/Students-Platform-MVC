@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace Final_Project_ITI.Models
+namespace Students_Education_Platform.Models
 {
     public class Student
     {

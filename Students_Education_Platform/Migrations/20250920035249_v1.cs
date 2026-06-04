@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Final_Project_ITI.Migrations
+namespace Students_Education_Platform.Migrations
 {
     /// <inheritdoc />
     public partial class v1 : Migration

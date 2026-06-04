@@ -4,6 +4,7 @@ using Students_Education_Platform.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Students_Education_Platform.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20260601060502_AddCourseAndExam")]
+    partial class AddCourseAndExam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +68,7 @@ namespace Students_Education_Platform.Migrations
                         new
                         {
                             Id = 3,
-                            CourseName = ".Net Basics",
+                            CourseName = "Laravel Basics",
                             DeptId = 4,
                             Duration = 30
                         },
@@ -172,7 +175,7 @@ namespace Students_Education_Platform.Migrations
                         {
                             Id = 1,
                             CourseId = 1,
-                            Date = new DateTime(2025, 6, 15, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2026, 6, 15, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             FullMark = 100,
                             Title = "OOP Final Exam"
                         },
@@ -180,7 +183,7 @@ namespace Students_Education_Platform.Migrations
                         {
                             Id = 2,
                             CourseId = 2,
-                            Date = new DateTime(2025, 6, 18, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2026, 6, 18, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             FullMark = 50,
                             Title = "SQL Practical Exam"
                         },
@@ -188,7 +191,7 @@ namespace Students_Education_Platform.Migrations
                         {
                             Id = 3,
                             CourseId = 3,
-                            Date = new DateTime(2025, 6, 20, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2026, 6, 20, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             FullMark = 20,
                             Title = "Laravel Basic Quiz"
                         },
@@ -196,7 +199,7 @@ namespace Students_Education_Platform.Migrations
                         {
                             Id = 4,
                             CourseId = 4,
-                            Date = new DateTime(2025, 6, 22, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2026, 6, 22, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             FullMark = 100,
                             Title = "Network Security Midterm"
                         },
@@ -204,7 +207,7 @@ namespace Students_Education_Platform.Migrations
                         {
                             Id = 5,
                             CourseId = 5,
-                            Date = new DateTime(2025, 6, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2026, 6, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             FullMark = 100,
                             Title = "Front-End Integration Test"
                         });

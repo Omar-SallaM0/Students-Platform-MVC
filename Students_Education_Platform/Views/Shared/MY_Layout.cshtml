@@ -1,33 +1,151 @@
-﻿<!DOCTYPE html>
-<html>
+@using Microsoft.AspNetCore.Http
+@{
+    var userName = Context.Session.GetString("UserName");
+    var userType = Context.Session.GetString("UserType");
+}
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/css/22.14 Assignment-StyleSheet.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Student Platform</title>
+    <!-- Bootstrap and FontAwesome -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/MVC_Lab1.styles.css" asp-append-version="true" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet" type="text/css" />
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            color: #334155;
+        }
+        .navbar-custom {
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid #3b82f6;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #ffffff !important;
+        }
+        .navbar-brand span {
+            color: #3b82f6;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: #cbd5e1 !important;
+            transition: color 0.2s ease, transform 0.2s ease;
+            padding: 0.5rem 1rem !important;
+        }
+        .nav-link:hover {
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+        .nav-item.active .nav-link {
+            color: #3b82f6 !important;
+        }
+        .user-badge {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa !important;
+            border-radius: 50px;
+            padding: 0.35rem 1rem !important;
+            font-weight: 600;
+        }
+        .logout-btn {
+            background: #ef4444;
+            color: white !important;
+            border-radius: 8px;
+            padding: 0.5rem 1.25rem !important;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+        .login-btn {
+            background: #3b82f6;
+            color: white !important;
+            border-radius: 8px;
+            padding: 0.5rem 1.25rem !important;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .login-btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+        .page-content {
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+        }
+    </style>
 </head>
 <body>
-    <div class ="container">
-        <div class ="navbar">
-            <div class="navbar-brand"><h1 style="color: #0d6efd">CRUD Demo</h1></div>
-            <ul>
-              <li >
-                  <a  asp-area="" asp-controller="Home" asp-action="index">Home</a>
-              </li>
-              <li >
-                  <a  asp-area="" asp-controller="Student" asp-action="Getall">Students</a>
-              </li>
-              <li>
-                  <a  asp-area="" asp-action="GetallDepartment" asp-controller="Department">Departments</a>
-              </li>
-           </ul>
-       </div>
-        <div class = "page-content">
-            @RenderBody()
-       </div>
-   </div>
-       <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm py-3 sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="index">
+                <i class="fas fa-graduation-cap me-2 text-primary"></i>
+                STUDENTS<span>PLATFORM</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="index"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Student" asp-action="Getall"><i class="fas fa-users me-1"></i> Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Department" asp-action="GetallDepartment"><i class="fas fa-university me-1"></i> Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Courses" asp-action="Index"><i class="fas fa-book-open me-1"></i> Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Exam" asp-action="Index"><i class="fas fa-file-signature me-1"></i> Exams</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center gap-3">
+                    @if (userName != null)
+                    {
+                        <span class="user-badge d-flex align-items-center gap-2">
+                            <i class="fas fa-user-circle"></i>
+                            Hello, @userName (@userType)
+                        </span>
+                        <a class="nav-link logout-btn shadow-sm" asp-controller="Auth" asp-action="Logout">
+                            <i class="fas fa-sign-out-alt me-1"></i> Logout
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="nav-link login-btn shadow-sm" asp-controller="Auth" asp-action="Login">
+                            <i class="fas fa-sign-in-alt me-1"></i> Login
+                        </a>
+                        <a class="btn btn-outline-light fw-semibold" asp-controller="Auth" asp-action="Register" style="border-radius: 8px; padding: 0.5rem 1.25rem;">
+                            Register
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container page-content">
+        @RenderBody()
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

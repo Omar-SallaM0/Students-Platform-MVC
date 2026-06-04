@@ -1,0 +1,72 @@
+@model Students_Education_Platform.Models.Exam
+@{
+    ViewData["Title"] = "Exam Details";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="d-flex align-items-center mb-4">
+                <a href="~/Exam/Index" class="btn btn-outline-secondary btn-sm rounded-circle p-2 me-3" style="width: 38px; height: 38px;">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div>
+                    <h2 class="fw-bold mb-0">Exam Specifications</h2>
+                    <p class="text-muted small mb-0">Detailed blueprint and scheduling parameters</p>
+                </div>
+            </div>
+
+            <div class="glass-card shadow p-5 border-0 rounded-4" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.4) !important;">
+                
+                <div class="text-center mb-4">
+                    <div class="d-inline-block p-3 rounded-circle bg-success text-white mb-3 shadow-sm" style="width: 60px; height: 60px;">
+                        <i class="fas fa-file-signature fa-xl"></i>
+                    </div>
+                    <h3 class="fw-bold">@Model.Title</h3>
+                    <p class="text-muted small">Exam ID: #@Model.Id</p>
+                </div>
+
+                <hr class="my-4" style="border-top: 1px solid #e2e8f0;" />
+
+                <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <span class="text-secondary fw-semibold small">Associated Course:</span>
+                    <span class="badge bg-soft-primary text-primary px-3 py-1.5 fw-bold rounded-2">
+                        <i class="fas fa-book me-1"></i>@(Model.Course?.CourseName ?? "Unassigned")
+                    </span>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <span class="text-secondary fw-semibold small">Scheduled Time:</span>
+                    <span class="fw-bold text-dark-800">
+                        <i class="far fa-calendar-alt text-muted me-1.5"></i>@Model.Date.ToString("MMMM dd, yyyy @ hh:mm tt")
+                    </span>
+                </div>
+
+                <div class="mb-4 d-flex justify-content-between align-items-center">
+                    <span class="text-secondary fw-semibold small">Full Mark:</span>
+                    <span class="badge bg-soft-success text-success px-3 py-1.5 fw-bold rounded-pill">
+                        @Model.FullMark Points
+                    </span>
+                </div>
+
+                <div class="d-flex gap-3">
+                    <a href="~/Exam/Edit?id=@Model.Id" class="btn btn-warning text-white fw-bold rounded-3 w-50 py-2.5 shadow-sm">
+                        <i class="fas fa-edit me-2"></i>Edit Exam
+                    </a>
+                    <a href="~/Exam/Delete?id=@Model.Id" class="btn btn-outline-danger fw-bold rounded-3 w-50 py-2.5">
+                        <i class="fas fa-trash-alt me-2"></i>Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-soft-primary {
+        background-color: rgba(59, 130, 246, 0.12) !important;
+    }
+    .bg-soft-success {
+        background-color: rgba(16, 185, 129, 0.12) !important;
+    }
+</style>
